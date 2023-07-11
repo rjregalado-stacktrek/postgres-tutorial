@@ -153,8 +153,21 @@ VALUES('product 5', 1150, 1, 'image5'),
 --COALESCE---
 SELECT COALESCE(null, 8, 9, null, 10 );
 
---CONSTRAINT---
-CREATE TABLE employee(
+-------------CONSTRAINT--------------------
+
+--NOT NULL Constraint − Ensures that a column cannot have NULL value.
+
+--UNIQUE Constraint − Ensures that all values in a column are different.
+
+--PRIMARY Key − Uniquely identifies each row/record in a database table.
+
+--FOREIGN Key − Constrains data based on columns in other tables.
+
+--CHECK Constraint − The CHECK constraint ensures that all values in a column satisfy certain conditions.
+
+--EXCLUSION Constraint − The EXCLUDE constraint ensures that if any two rows are compared on the specified column(s) or expression(s) using the specified operator(s), not all of these comparisons will return TRUE.
+
+CREATE TABLE employee1(
     emp_id INT,
     first_name VARCHAR(50) NOT NULL,
     last_name VARCHAR(50) NOT NULL,
@@ -165,8 +178,46 @@ CREATE TABLE employee(
 	
 select * from employee
 
-ALTER TABLE employee
-ALTER COLUMN gender SET NOT NULL;
+--UNIQUE CONSRAINT---
+
+CREATE TABLE employee2(
+   ID SERIAL PRIMARY KEY     NOT NULL,
+   NAME           TEXT    NOT NULL,
+   AGE            INT     NOT NULL UNIQUE,
+   ADDRESS        CHAR(50),
+   SALARY         REAL    DEFAULT 50000.00
+);
+
+--PRIMARY KEY Constraint
+
+CREATE TABLE employee3(
+   ID INT PRIMARY KEY     NOT NULL,
+   NAME           TEXT    NOT NULL,
+   AGE            INT     NOT NULL,
+   ADDRESS        CHAR(50),
+   SALARY         REAL
+);
+
+--FOREIGN KEY Constraint
+
+CREATE TABLE Company(
+   ID INT PRIMARY KEY     NOT NULL,
+   NAME           TEXT    NOT NULL,
+   AGE            INT     NOT NULL,
+   ADDRESS        CHAR(50),
+   SALARY         REAL
+);
+
+CREATE TABLE DEPARTMENT1(
+   ID INT PRIMARY KEY      NOT NULL,
+   DEPT           CHAR(50) NOT NULL,
+   EMP_ID         INT      references Company(ID)
+);
+
+
+--DROPPING CONSRAINT--
+
+ALTER TABLE table_name DROP CONSTRAINT some_name;
 
 
 
